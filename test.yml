@@ -9,7 +9,7 @@
         msg: "Hostname is: {{ hostname.stdout }}"
       
     - name: Check IP Address & Route
-      command: ip route
+      command: ip addr
       register: ipaddress
       
     - name: Print IP Address
