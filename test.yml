@@ -11,18 +11,10 @@
         - ip route
       register: ipaddressroute
       
-    - name: Check Keyboard & Locale
-      command: "{{ item }}"
-      with_items:
-        - cat /etc/default/keyboard | grep XKBLAYOUT
-        - cat /etc/default/locale
-      register: keyboardlocale
-      
     - name: Print Hostname, IP Address, Route, Keyboard, & Locale
       debug:
         msg: "Hostname is: {{ hostname.stdout }}"
         msg: "IP Address & Route are: {{ipaddressroute.stdout }}"
-        msg: "Keyboard & Locale are: {{keyboardlocale.stdout }}"
 
     - name: Check MAIL SSL Cert
       command: echo "quit" | openssl s_client -showcerts -connect wsc17.cloud:465 | grep issuer
