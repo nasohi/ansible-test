@@ -9,7 +9,7 @@
         msg: "Hostname is: {{ hostname.stdout }}"
       
     - name: Check IP Address & Route
-      command: ip addr
+      shell: ip addr | grep eth0
       register: ipaddress
       
     - name: Print IP Address
