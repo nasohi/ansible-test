@@ -1,15 +1,19 @@
 - hosts: 10.1.1.10
   tasks:
     - name: Check Hostname
-      command: hostname
+      shell: hostname
       register: hostname
       
     - name: Check IP Address & Route
-      command: ip addr && ip route
+      shell: |
+        ip addr
+        ip route
       register: ipaddressroute
       
     - name: Check Keyboard & Locale
-      command: cat /etc/default/keyboard | grep XKBLAYOUT && cat /etc/default/locale
+      shell: ||
+        cat /etc/default/keyboard | grep XKBLAYOUT
+        cat /etc/default/locale
       register: keyboardlocale
       
     - name: Print Hostname, IP Address, Route, Keyboard, & Locale
@@ -19,7 +23,7 @@
         msg: "Keyboard & Locale are: {{keyboardlocale.stdout }}"
 
     - name: Check MAIL SSL Cert
-      command: echo "quit" | openssl s_client -showcerts -connect wsc17.cloud:465 | grep issuer
+      shell: echo "quit" | openssl s_client -showcerts -connect wsc17.cloud:465 | grep issuer
       register: mailssl
     
     - name: Print MAIL SSL Cert
