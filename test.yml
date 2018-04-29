@@ -19,7 +19,7 @@
         msg: "Keyboard & Locale are: {{keyboardlocale.stdout }}"
 
     - name: Check MAIL SSL Cert
-      command: echo "quit" | openssl s_client -showcerts -connect wsc17.cloud:465 | grep issuer"
+      command: echo "quit" | openssl s_client -showcerts -connect wsc17.cloud:465 | grep issuer
       register: mailssl
     
     - name: Print MAIL SSL Cert
