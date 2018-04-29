@@ -1,4 +1,4 @@
-- hosts: 172.16.1.100
+- hosts: 10.1.1.10
   tasks:
     - name: Check Hostname
       command: hostname
