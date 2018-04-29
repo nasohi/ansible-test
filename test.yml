@@ -1,0 +1,9 @@
+- hosts: 172.16.1.100
+  tasks:
+    - name: Check Hostname
+      command: hostname
+      register: hostname
+
+    - name: Print Hostname
+      debug:
+        msg: "Hostname is: {{ hostname.stdout }}"
